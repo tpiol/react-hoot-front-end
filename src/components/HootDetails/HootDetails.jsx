@@ -14,8 +14,6 @@ const HootDetails = () => {
         fetchHoot();
     }, [hootId]);
 
-    console.log('hoot state:', hoot);
-
     if (!hoot) return <main>Loading...</main>;
 
     return (
