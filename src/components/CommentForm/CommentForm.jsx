@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import * as hootService from "../../services/hootService"
+import styles from './CommentForm.module.css';
 
 const CommentForm = (props) => {
   const [formData, setFormData] = useState({ text: '' });
@@ -33,19 +34,35 @@ const CommentForm = (props) => {
   }, [hootId, commentId]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='text-input'>Your comment:</label>
-      <textarea
-        required
-        type='text'
-        name='text'
-        id='text-input'
-        value={formData.text}
-        onChange={handleChange}
-      />
-      <button type='submit'>SUBMIT COMMENT</button>
-    </form>
-  );
+     <main className={styles.container}>
+    {hootId && commentId ? (
+      <form onSubmit={handleSubmit}>
+        <h1>Edit Comment</h1>
+        <label htmlFor="text-input">Your comment:</label>
+        <textarea
+          required
+          name="text"
+          id="text-input"
+          value={formData.text}
+          onChange={handleChange}
+        />
+        <button type="submit">SUBMIT</button>
+      </form>
+    ) : (
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="text-input">Your comment:</label>
+        <textarea
+          required
+          name="text"
+          id="text-input"
+          value={formData.text}
+          onChange={handleChange}
+        />
+        <button type="submit">submit</button>
+      </form>
+    )}
+  </main>
+);
 };
 
 export default CommentForm;
