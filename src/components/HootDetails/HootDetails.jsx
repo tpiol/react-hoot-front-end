@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import * as hootService from "../../services/hootService"
 import { useEffect, useState, useContext } from "react";
 import CommentForm from "../CommentForm/CommentForm";
@@ -15,7 +15,7 @@ const HootDetails = (props) => {
 
     };
 
-    
+
 
     useEffect(() => {
         const fetchHoot = async () => {
@@ -39,7 +39,8 @@ const HootDetails = (props) => {
                     </p>
                     {hoot.author._id === user._id && (
                         <>
-                        <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
+                            <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
+                            <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
                         </>
                     )}
                 </header>
