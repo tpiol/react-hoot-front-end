@@ -16,7 +16,7 @@ const HootDetails = (props) => {
     };
 
     const handleDeleteComment = async (commentId) => {
-        console.log('commentId:', commentId);
+        await hootService.deleteComment(hootId, commentId);
         setHoot({
             ...hoot,
             comments: hoot.comments.filter((comment) => comment._id !== commentId),

@@ -86,7 +86,7 @@ const update = async (hootId, hootFormData) => {
 
 const deleteComment = async (hootId, commentId) => {
     try {
-        const res = await fetch(`${BASE_URL}/${hootId}`, {
+        const res = await fetch(`${BASE_URL}/${hootId}/comments/${commentId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
