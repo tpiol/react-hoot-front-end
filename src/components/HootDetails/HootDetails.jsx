@@ -3,6 +3,7 @@ import * as hootService from "../../services/hootService"
 import { useEffect, useState, useContext } from "react";
 import CommentForm from "../CommentForm/CommentForm";
 import { UserContext } from "../../contexts/UserContext"
+import styles from './HootDetails.module.css';
 
 const HootDetails = (props) => {
     const { hootId } = useParams();
@@ -35,11 +36,12 @@ const HootDetails = (props) => {
     if (!hoot) return <main>Loading...</main>;
 
     return (
-        <main>
+        <main className={styles.container}>
             <section>
                 <header>
                     <p>{hoot.category.toUpperCase()}</p>
                     <h1>{hoot.title}</h1>
+                    <div>
                     <p>
                         {`${hoot.author.username} posted on
             ${new Date(hoot.createdAt).toLocaleDateString()}`}
@@ -50,6 +52,7 @@ const HootDetails = (props) => {
                             <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
                         </>
                     )}
+                    </div>
                 </header>
                 <p>{hoot.text}</p>
             </section>
@@ -61,6 +64,7 @@ const HootDetails = (props) => {
                 {hoot.comments.map((comment) => (
                     <article key={comment._id}>
                         <header>
+                            <div>
                             <p>
                                 {`${comment.author.username} posted on
                 ${new Date(comment.createdAt).toLocaleDateString()}`}
@@ -71,6 +75,7 @@ const HootDetails = (props) => {
                                     <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
                                 </>
                             )}
+                            </div>
                         </header>
                         <p>{comment.text}</p>
                     </article>
