@@ -15,6 +15,13 @@ const HootDetails = (props) => {
 
     };
 
+    const handleDeleteComment = async (commentId) => {
+        console.log('commentId:', commentId);
+        setHoot({
+            ...hoot,
+            comments: hoot.comments.filter((comment) => comment._id !== commentId),
+        });
+    };
 
 
     useEffect(() => {
@@ -58,6 +65,12 @@ const HootDetails = (props) => {
                                 {`${comment.author.username} posted on
                 ${new Date(comment.createdAt).toLocaleDateString()}`}
                             </p>
+                            {comment.author._id === user._id && (
+                                <>
+                                    <Link to={`/hoots/${hootId}/comments/${comment._id}/edit`}>Edit</Link>
+                                    <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                                </>
+                            )}
                         </header>
                         <p>{comment.text}</p>
                     </article>
