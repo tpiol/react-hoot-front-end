@@ -5,6 +5,7 @@ import CommentForm from "../CommentForm/CommentForm";
 import { UserContext } from "../../contexts/UserContext"
 import styles from './HootDetails.module.css';
 import Loading from '../Loading/Loading';
+import Icon from '../Icon/Icon';
 
 const HootDetails = (props) => {
     const { hootId } = useParams();
@@ -49,8 +50,12 @@ const HootDetails = (props) => {
                         </p>
                         {hoot.author._id === user._id && (
                             <>
-                                <Link to={`/hoots/${hootId}/edit`}>Edit</Link>
-                                <button onClick={() => props.handleDeleteHoot(hootId)}>Delete</button>
+                                <Link to={`/hoots/${hootId}/edit`}>
+                                    <Icon category='Edit' />
+                                </Link>
+                                <button onClick={() => props.handleDeleteHoot(hootId)}>
+                                    <Icon category='Trash' />
+                                </button>
                             </>
                         )}
                     </div>
@@ -72,8 +77,12 @@ const HootDetails = (props) => {
                                 </p>
                                 {comment.author._id === user._id && (
                                     <>
-                                        <Link to={`/hoots/${hootId}/comments/${comment._id}/edit`}>Edit</Link>
-                                        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                                        <Link to={`/hoots/${hootId}/comments/${comment._id}/edit`}>
+                                            <Icon category='Edit' />
+                                        </Link>
+                                        <button onClick={() => handleDeleteComment(comment._id)}>
+                                            <Icon category='Trash' />
+                                        </button>
                                     </>
                                 )}
                             </div>
